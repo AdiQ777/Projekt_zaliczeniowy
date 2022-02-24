@@ -46,7 +46,6 @@ public class NewAddressAddition {
         String realName = accountConfirmation.getText();
 
         Assertions.assertEquals(expectedName, realName);
-
     }
 
     @When("logged user clicks AddFirstAddress button")
@@ -71,10 +70,33 @@ public class NewAddressAddition {
 
         String expectedInfo = "Address successfully added!";
         Assertions.assertEquals(expectedInfo, driver.findElement(By.xpath("//*[@id=\"notifications\"]/div/article/ul/li")).getText());
-//        Assertions.assertEquals(aliasx, driver.findElement(By.xpath("//*[@id=\"address-20984\"]/div[1]/h4")).getText());
-//        Assertions.assertEquals(addressx, driver.findElement(By.xpath("//*[@id=\"address-20984\"]/div[1]/address/text()[2]")).getText());
-//        Assertions.assertEquals(zipCodex, driver.findElement(By.xpath("//*[@id=\"address-20984\"]/div[1]/address/text()[4]")).getText());
-//        Assertions.assertEquals(cityx, driver.findElement(By.xpath("//*[@id=\"address-20984\"]/div[1]/address/text()[3]")).getText());
-//        Assertions.assertEquals(countryx, driver.findElement(By.xpath("//*[@id=\"address-20984\"]/div[1]/address/text()[5]")).getText());
+
+        WebElement xyz = driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div[1]/article"));
+        String yzx = xyz.getAttribute("id");
+
+        String aliasm = "//*[@id='" + yzx + "']/div[1]/h4";
+        String addressm = "//*[@id='" + yzx + "']/div[1]/address";
+
+        WebElement imieNazwisko = driver.findElement(By.xpath("//*[@id=\"_desktop_user_info\"]/div/a[2]/span"));
+        String correctName = imieNazwisko.getText();
+
+        String correctValue = correctName + "\n" + addressx + "\n" + cityx + "\n" + zipCodex + "\n" + countryx;
+
+        Assertions.assertEquals(aliasx, driver.findElement(By.xpath(aliasm)).getText());
+        Assertions.assertEquals(correctValue, driver.findElement(By.xpath(addressm)).getText());
+    }
+
+    @When("user clicks delete button")
+    public void userClicksDeleteButton() {
+        driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div[1]/article/div[2]/a[2]/span")).click();
+
+    }
+
+    @Then("address is deleted")
+    public void addressIsDeleted() {
+
+        String expectedInfo = "Address successfully deleted!";
+        Assertions.assertEquals(expectedInfo, driver.findElement(By.xpath("//*[@id=\"notifications\"]/div/article/ul/li")).getText());
+
     }
 }

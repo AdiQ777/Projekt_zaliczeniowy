@@ -7,6 +7,8 @@ Feature: New account address
     When logged user clicks AddFirstAddress button
     And fills user address data '<Alias>', '<Address>', '<Zip.PostalCode>', '<City>', '<Country>' and clisks Save button
     Then new address is added to account with proper data '<Alias>', '<Address>', '<Zip.PostalCode>', '<City>' and '<Country>'
+    When user clicks delete button
+    Then address is deleted
 
     Examples:
     |Alias   |Address   |Zip.PostalCode |City   |Country        |
