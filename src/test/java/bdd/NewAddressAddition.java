@@ -1,13 +1,23 @@
 package bdd;
 
+import Helpers.WebDriverFactory;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 public class NewAddressAddition {
+
+    private WebDriver driver;
+
     @Given("user is on the CodersLab MyStore main paige")
     public void userIsOnTheCodersLabMyStoreMainPaige() {
+        driver = WebDriverFactory.createChromeDriver();
+        driver.get("https://mystore-testlab.coderslab.pl/");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @When("user clicks SignIn button")
