@@ -1,7 +1,6 @@
-package bdd;
+package zadanie1;
 
 import Helpers.WebDriverFactory;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
