@@ -5,8 +5,7 @@ Feature: shopping in Presta Shop
     Then user is logged into the account
     Given logged user is on the CodersLab Presta Shop main paige
     When user choose the correct item 'Hummingbird Printed Sweater'
-    And select the proper size 'M' and quantity of items '5'
-    And add the items to the shopping cart
+    And select the proper size 'M' and quantity of items '5' and add item to cart
     And go to the checkout page to confirm the address
     And choose correct delivery and payment type
     And confirm the order

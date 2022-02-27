@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjectPatternZadanie2.pages.AccountLogin;
+import pageObjectPatternZadanie2.pages.ItemConfigurator;
 import pageObjectPatternZadanie2.pages.ItemSelector;
 
 import java.time.Duration;
@@ -53,12 +54,13 @@ public class prestaShoppingZadanie2 {
         itemSelector.selectionOfItem(itemName);
     }
 
-    @And("select the proper size {string} and quantity of items {string}")
-    public void selectTheProperSizeMAndQuantityOfItems(int arg0) {
-    }
+    @And("select the proper size {string} and quantity of items {string} and add item to cart")
+    public void selectTheProperSizeMAndQuantityOfItems(String size, String quantity) {
 
-    @And("add the items to the shopping cart")
-    public void addTheItemsToTheShoppingCart() {
+        ItemConfigurator itemConfigurator = new ItemConfigurator(driver);
+        itemConfigurator.selectSize(size);
+        itemConfigurator.selectQuantity(quantity);
+        itemConfigurator.addToCart();
     }
 
     @And("go to the checkout page to confirm the address")
