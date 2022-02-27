@@ -5,13 +5,18 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pageObjectPatternZadanie2.pages.AccountLogin;
 import pageObjectPatternZadanie2.pages.ItemConfigurator;
 import pageObjectPatternZadanie2.pages.ItemSelector;
+import pageObjectPatternZadanie2.pages.OrderConfirmation;
 
+import java.io.File;
 import java.time.Duration;
 
 public class prestaShoppingZadanie2 {
@@ -45,6 +50,7 @@ public class prestaShoppingZadanie2 {
 
     @Given("logged user is on the CodersLab Presta Shop main paige")
     public void loggedUserIsOnTheCodersLabPrestaShopMainPaige() {
+
         driver.get("https://mystore-testlab.coderslab.pl/");
     }
 
@@ -65,17 +71,28 @@ public class prestaShoppingZadanie2 {
 
     @And("go to the checkout page to confirm the address")
     public void goToTheCheckoutPageToConfirmTheAddress() {
+        OrderConfirmation orderConfirmation = new OrderConfirmation(driver);
+        orderConfirmation.proceedToCheckout();
+        orderConfirmation.addressConfirmation();
     }
 
-    @And("choose correct delivery and payment type")
-    public void chooseCorrectDeliveryAndPaymentType() {
+    @And("choose correct delivery {string} and payment type {string}")
+    public void chooseCorrectDeliveryAndPaymentType(String shippingType, String paymentType) {
+        OrderConfirmation orderConfirmation = new OrderConfirmation(driver);
+        orderConfirmation.shippingSelection(shippingType);
+        orderConfirmation.paymentSelection(paymentType);
     }
 
     @And("confirm the order")
     public void confirmTheOrder() {
+        OrderConfirmation orderConfirmation = new OrderConfirmation(driver);
+        orderConfirmation.orderConfirmation();
     }
 
     @Then("the order is placed correctly - screenshot for confirmation")
-    public void theOrerIsPlacedCorrectlyScreenshotForConfirmation() {
+    public void theOrerIsPlacedCorrectlyScreenshotForConfirmation() throws Exception {
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File file = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File("./screenshots/Screen.png"));
     }
 }

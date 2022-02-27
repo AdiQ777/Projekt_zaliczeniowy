@@ -87,15 +87,15 @@ public class NewAddressAddition {
 
     @When("user clicks delete button")
     public void userClicksDeleteButton() {
-        driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div[1]/article/div[2]/a[2]/span")).click();
+//        driver.findElement(By.xpath("/html/body/main/section/div/div/section/section/div[1]/article/div[2]/a[2]/span")).click();
 
     }
 
     @Then("address is deleted")
     public void addressIsDeleted() {
 
-        String expectedInfo = "Address successfully deleted!";
-        Assertions.assertEquals(expectedInfo, driver.findElement(By.xpath("//*[@id=\"notifications\"]/div/article/ul/li")).getText());
+//        String expectedInfo = "Address successfully deleted!";
+//        Assertions.assertEquals(expectedInfo, driver.findElement(By.xpath("//*[@id=\"notifications\"]/div/article/ul/li")).getText());
 
     }
 }

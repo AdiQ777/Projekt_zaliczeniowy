@@ -7,6 +7,6 @@ Feature: shopping in Presta Shop
     When user choose the correct item 'Hummingbird Printed Sweater'
     And select the proper size 'M' and quantity of items '5' and add item to cart
     And go to the checkout page to confirm the address
-    And choose correct delivery and payment type
+    And choose correct delivery 'PrestaShop' and payment type 'Pay by Check'
     And confirm the order
     Then the order is placed correctly - screenshot for confirmation
